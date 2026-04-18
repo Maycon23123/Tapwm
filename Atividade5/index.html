@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pesquisa de Filme</title>
+
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pesquisa de Filme</h1>
+
+    <form id="formPesquisa">
+      <label>Idade:</label>
+      <input type="number" id="idade" required /><br /><br />
+
+      <label>Sexo:</label>
+      <select id="sexo" required>
+        <option value="">Selecione</option>
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+        <option value="O">Outros</option></select
+      ><br /><br />
+
+      <label>Opinião:</label>
+      <select id="opiniao" required>
+        <option value="">Selecione</option>
+        <option value="4">Ótimo</option>
+        <option value="3">Bom</option>
+        <option value="2">Regular</option>
+        <option value="1">Péssimo</option></select
+      ><br /><br />
+
+      <button type="button" onclick="adicionar()">Adicionar</button>
+      <button type="button" onclick="calcular()">Calcular</button>
+    </form>
+    <button type="button" onclick="gerarAleatorios()">Gerar 45 pessoas</button>
+
+    <h2>Pessoas cadastradas</h2>
+    <table id="tabelaPessoas">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Idade</th>
+          <th>Sexo</th>
+          <th>Opinião</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Resultado</h2>
+    <table id="tabelaResultado">
+      <tbody></tbody>
+    </table>
+
+    <script>
+      let pessoas = [];
+
+      function adicionar() {
+        if (pessoas.length >= 45) {
+          alert(
+            "Não é possível adicionar mais de 45 pessoas. Limite máximo atingido!",
+          );
+          return;
+        }
+
+        const idade = parseInt(document.getElementById("idade").value);
+        const sexo = document.getElementById("sexo").value;
+        const opiniao = parseInt(document.getElementById("opiniao").value);
+
+        if (!idade || !sexo || !opiniao) {
+          alert("Preencha todos os campos!");
+          return;
+        }
+
+        pessoas.push({ idade, sexo, opiniao });
+
+        atualizarTabela();
+
+        document.getElementById("formPesquisa").reset();
+      }
+
+      function atualizarTabela() {
+        const tbody = document.querySelector("#tabelaPessoas tbody");
+        tbody.innerHTML = "";
+
+        pessoas.forEach((p, index) => {
+          const linha = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${p.idade}</td>
+                        <td>${p.sexo}</td>
+                        <td>${traduzirOpiniao(p.opiniao)}</td>
+                    </tr>
+                `;
+          tbody.innerHTML += linha;
+        });
+      }
+
+      function gerarAleatorios() {
+        pessoas = [];
+        for (let i = 0; i < 45; i++) {
+          const idade = Math.floor(Math.random() * 71) + 10;
+          const sexos = ["M", "F", "O"];
+          const sexo = sexos[Math.floor(Math.random() * 3)];
+          const opiniao = Math.floor(Math.random() * 4) + 1;
+
+          pessoas.push({ idade, sexo, opiniao });
+        }
+
+        atualizarTabela();
+        alert("45 pessoas geradas com sucesso!");
+      }
+
+      function traduzirOpiniao(op) {
+        switch (op) {
+          case 4:
+            return "Ótimo";
+          case 3:
+            return "Bom";
+          case 2:
+            return "Regular";
+          case 1:
+            return "Péssimo";
+        }
+      }
+
+      function calcular() {
+        if (pessoas.length === 0) {
+          alert("Nenhum dado inserido!");
+          return;
+        }
+
+        let somaIdade = 0;
+        let maisVelho = pessoas[0].idade;
+        let maisNovo = pessoas[0].idade;
+        let pessimo = 0;
+        let otimoBom = 0;
+
+        let homens = 0,
+          mulheres = 0,
+          outros = 0;
+
+        pessoas.forEach((p) => {
+          somaIdade += p.idade;
+
+          if (p.idade > maisVelho) maisVelho = p.idade;
+          if (p.idade < maisNovo) maisNovo = p.idade;
+
+          if (p.opiniao === 1) pessimo++;
+          if (p.opiniao === 3 || p.opiniao === 4) otimoBom++;
+
+          if (p.sexo === "M") homens++;
+          else if (p.sexo === "F") mulheres++;
+          else outros++;
+        });
+
+        const media = somaIdade / pessoas.length;
+        const porcentagem = (otimoBom / pessoas.length) * 100;
+
+        const tbody = document.querySelector("#tabelaResultado tbody");
+        tbody.innerHTML = `<tr><td>Média de idade</td><td>${media.toFixed(2)}</td></tr>
+                <tr><td>Mais velho</td><td>${maisVelho}</td></tr>
+                <tr><td>Mais novo</td><td>${maisNovo}</td></tr>
+                <tr><td>Qtd. Péssimo</td><td>${pessimo}</td></tr>
+                <tr><td>% Ótimo/Bom</td><td>${porcentagem.toFixed(2)}%</td></tr>
+                <tr><td>Homens</td><td>${homens}</td></tr>
+                <tr><td>Mulheres</td><td>${mulheres}</td></tr>
+                <tr><td>Outros</td><td>${outros}</td></tr>`;
+      }
+    </script>
+  </body>
+</html>
