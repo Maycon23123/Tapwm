@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Atividade 8</title>
+  </head>
+  <body>
+    <h2>Atividade 8 - Array</h2>
+
+    <h3>1) Soma e quadrados</h3>
+    <input type="number" id="a" />
+    <input type="number" id="b" />
+    <input type="number" id="c" />
+    <button onclick="calc()">Calcular</button>
+    <p id="res1"></p>
+
+    <h3>2) Gerar palavras</h3>
+    <input type="text" id="letras" placeholder="Ex: abcde" />
+    <button onclick="gerar()">Gerar</button>
+    <p id="res2"></p>
+
+    <script src="funcoes.js"></script>
+
+    <script>
+      function calc() {
+        let arr = [Number(a.value), Number(b.value), Number(c.value)];
+
+        res1.innerText = calcularArray(arr);
+      }
+
+      function gerar() {
+        let letrasInput = letras.value.split("");
+
+        let resultado = gerarPalavras(letrasInput);
+
+        res2.innerText = resultado.join(", ");
+      }
+    </script>
+  </body>
+</html>
