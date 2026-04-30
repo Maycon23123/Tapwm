@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Atividade 7</title>
+  </head>
+  <body>
+    <h2>Testando funções</h2>
+
+    <h3>Maior de três números</h3>
+    <input type="number" id="n1" />
+    <input type="number" id="n2" />
+    <input type="number" id="n3" />
+    <button onclick="mostrarMaior()">Calcular</button>
+    <p id="res1"></p>
+
+    <h3>Ordem crescente</h3>
+    <button onclick="mostrarOrdem()">Ordenar</button>
+    <p id="res2"></p>
+
+    <h3>Palíndromo</h3>
+    <input type="text" id="texto" />
+    <button onclick="verificarPalindromo()">Verificar</button>
+    <p id="res3"></p>
+
+    <h3>Subconjunto</h3>
+    <input type="text" id="p1" placeholder="Palavra 1" />
+    <input type="text" id="p2" placeholder="Palavra 2" />
+    <button onclick="verificarSub()">Verificar</button>
+    <p id="res4"></p>
+
+    <h3>Dia da semana</h3>
+    <input type="date" id="data" />
+    <button onclick="verDia()">Ver dia</button>
+    <p id="res5"></p>
+
+    <script src="funcoes.js"></script>
+
+    <script>
+      function mostrarMaior() {
+        let a = Number(n1.value);
+        let b = Number(n2.value);
+        let c = Number(n3.value);
+
+        res1.innerText = "Maior: " + maiorNumero(a, b, c);
+      }
+
+      function mostrarOrdem() {
+        let a = Number(n1.value);
+        let b = Number(n2.value);
+        let c = Number(n3.value);
+
+        res2.innerText = "Ordem: " + ordemCrescente(a, b, c);
+      }
+
+      function verificarPalindromo() {
+        res3.innerText = ehPalindromo(texto.value)
+          ? "É palíndromo"
+          : "Não é palíndromo";
+      }
+
+      function verificarSub() {
+        res4.innerText = verificarSubconjunto(p1.value, p2.value);
+      }
+
+      function verDia() {
+        res5.innerText = diaDaSemana(data.value);
+      }
+    </script>
+  </body>
+</html>
