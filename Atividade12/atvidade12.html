@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="Tarefa-12">
+        <title>Abra a janela</title>
+    </head>
+    <body>
+         <img src="img/Fechado.png" onmouseover=aberta() id="janela" width="500" height="600"
+         onmouseout=Fechado() onmousedown=Quebrado()>
+         <h1 id="texto" onmouseover=aberta() onmouseout=Fechado() onmousedown=Quebrado()>Janela fechada</h1>
+         <script>
+            function aberta() {
+                document.getElementById("janela").src = "img/Aberto.png";   
+                document.getElementById("texto").innerHTML = "Janela aberta";
+                document.title ="Janela aberta";
+            }
+            function Fechado() {
+                document.getElementById("janela").src = "img/Fechado.png";
+                document.getElementById("texto").innerHTML = "Janela fechada";
+                document.title ="Janela fechada";
+            }
+            function Quebrado() {
+                document.getElementById("janela").src = "img/Quebrado.png";
+                document.getElementById("texto").innerHTML = "Janela quebrada";
+                document.title ="Janela quebrada";
+            }
+         </script>
+    </body>
+</html>
