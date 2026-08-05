@@ -1,0 +1,56 @@
+<!doctype html>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Personagens</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h2>Criar ou editar personagem</h2>
+        <form id="form">
+          <label for="name">Nome:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            minlength="10"
+            required
+          />
+          <label for="email">E-mail:</label>
+          <textarea
+            id="email"
+            name="email"
+            type="email"
+            required
+          ></textarea>
+
+          <label for="coment">Comentario:</label>
+          <input
+            type="text"
+            id="coment"
+            name="coment"
+            minlength="20"
+            required
+          />
+
+          <h2>Pesquisa</h2>
+          <h3>Primeira vez nessa pagina??</h3>
+          <div id="radio">
+            <label for="sim">Sim</label>
+            <input type="radio" id="sim" name="primeiraVez" value="sim" />
+            <label for="nao">Não</label>
+            <input type="radio" id="nao" name="primeiraVez" value="nao" />
+          </div>
+          <div id="feedback"></div>
+          <button type="submit">Salvar</button>
+          <button type="button" id="clear" onclick="clearForm()">Limpar</button>
+        </form>
+      </div>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
