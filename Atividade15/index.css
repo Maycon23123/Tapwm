@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  background: #1030c2;
+  font-family: Arial;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  width: 350px;
+}
+
+select {
+  width: 250px;
+  padding: 8px;
+  margin-top: 15px;
+}
+
+#feedback {
+  margin-top: 20px;
+  font-weight: bold;
+  color: red;
+}
