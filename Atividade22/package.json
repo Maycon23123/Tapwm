@@ -1,0 +1,22 @@
+{
+  "name": "atividade19",
+  "version": "1.0.0",
+  "description": "e",
+  "license": "ISC",
+  "author": "Maycon",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "consign": "^0.1.6",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mssql": "^12.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
